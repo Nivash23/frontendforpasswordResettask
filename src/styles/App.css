@@ -1,0 +1,30 @@
+button{
+    background-color: rgb(95, 220, 95);
+    margin-left: 100px;
+    width:125px;
+    padding:5px 5px 5px 5px;
+    font-weight: bold;
+    
+}
+button :active{
+    background-color: rgb(17, 29, 17) ;
+}
+#container{
+    background-color: rgb(207, 206, 206);
+    margin: 20% 20% 20% 30%;
+    padding:0px 0px 0px 0px;
+    width:400px;
+    height: 200px;
+
+}
+#username{
+    margin:20px 20px 20px 20px;
+    padding:5px 5px 5px 5px;
+}
+#password{
+    margin:20px 20px 20px 20px;
+    padding:5px 5px 5px 5px;
+}
+input{
+    width:200px;
+}
