@@ -4,7 +4,7 @@ import LoginFrom from "./pageHandler/Login";
 
 const MessageContext = createContext();
 function userReg() {
-  const [isRegistered, setIsRegistered] = useState(true);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   return (
     <div>
