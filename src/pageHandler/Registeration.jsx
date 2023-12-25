@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import '../App';
 import '../styles/App.css';
-// import { MessageContext } from "../App";
+import { MessageContext } from "../App";
 
 const RegisterForm = () => {
   const [registerFormdata, setRegisterFormdata] = useState({
