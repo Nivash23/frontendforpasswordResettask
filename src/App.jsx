@@ -1,21 +1,26 @@
 import React, { createContext, useState } from "react";
 import RegisterForm from './pageHandler/Registeration';
 import LoginFrom from "./pageHandler/Login";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
-const MessageContext = createContext();
+// const MessageContext = createContext();
 function userReg() {
-  const [isRegistered, setIsRegistered] = useState(false);
+  // const [isRegistered, setIsRegistered] = useState(false);
 
   return (
     <div>
       <h1>PettyCash Manager</h1>
-      <MessageContext.Provider value={{setIsRegistered}}>
-              
-      </MessageContext.Provider> 
-      {
-        isRegistered ? <LoginFrom /> : <RegisterForm />
-      }
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Login" element={<LoginFrom />} />
+          <Route path="/" element={<RegisterForm/>}/>
+          <Route path="/Register" element={<RegisterForm/>}/>
+        </Routes>
+      </BrowserRouter>
+
+      
+     
     </div>
   );
 }
-export {userReg as default,MessageContext};
+export default userReg;

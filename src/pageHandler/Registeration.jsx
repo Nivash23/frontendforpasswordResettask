@@ -1,18 +1,22 @@
 import React, { useContext, useState } from "react";
-import '../App';
-import '../styles/App.css';
-import { MessageContext } from "../App";
+import { BrowserRouter, Link } from 'react-router-dom';
+import "../App";
+import "../styles/App.css";
+// import { MessageContext } from "../App";
+import LoginFrom from "./Login";
 
 const RegisterForm = () => {
   const [registerFormdata, setRegisterFormdata] = useState({
     username: "",
     password: "",
   });
-  
+  const [loading, setLoading] = useState(false);
+  // const { setIsRegistered, isRegistered } = useContext(MessageContext);
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    
-    const { setIsRegistered} = useContext(MessageContext);
+    setLoading(true);
+
     const registerbody = {
       username: registerFormdata.username,
       password: registerFormdata.password,
@@ -37,12 +41,15 @@ const RegisterForm = () => {
     if (response.status == 200) {
       console.log("user created sucessfully..");
       console.log(data);
+
       setRegisterFormdata({
         username: "",
         password: "",
       });
+      setLoading(false);
       alert("user Registered sucessfully");
-      setIsRegistered(true);
+
+      // isRegistered ? <LoginFrom /> : <RegisterForm />;
     } else {
       console.log("Error");
       console.log(data);
@@ -83,7 +90,16 @@ const RegisterForm = () => {
               }
             />
           </div>
+          {
+            loading?
+          (<div class="spinner-border" id='load' role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>):null
+          }
           <button type="submit">Register</button>
+          <div>
+            Already have an account ? <Link to="/Login" >Login</Link>
+          </div>
         </form>
       </div>
     </div>

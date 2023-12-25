@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import '../styles/App.css';
+import { BrowserRouter, Link } from "react-router-dom";
 import '../App';
 import RegisterForm from "./Registeration";
 
@@ -85,6 +86,9 @@ const LoginFrom = () => {
             />
           </div>
           <button type="submit">Login</button>
+          <div>
+            Create new Account ? please <Link to="/" >Register</Link>
+          </div>
         </form>
           </div>
     </div>
