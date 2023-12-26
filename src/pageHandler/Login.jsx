@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import '../styles/App.css';
+import "../styles/App.css";
 import { BrowserRouter, Link } from "react-router-dom";
-import '../App';
+import "../App";
 import RegisterForm from "./Registeration";
 
 const LoginFrom = () => {
- 
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
-   const handleLogin = async (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
+    setLoading(true);
+
     // const { setIsRegistered} = useContext(MessageContext);
     const Loginbody = {
       username: loginFormData.username,
@@ -39,11 +41,12 @@ const LoginFrom = () => {
     if (response.status == 200) {
       console.log("user Login sucessfully..");
       console.log(data);
-      setRegisterFormdata({
+      setLoginFormData({
         username: "",
         password: "",
       });
       alert("username login sucessfully..");
+      setLoading(false);
       // setIsRegistered(true);
     } else {
       console.log("invalid username or password");
@@ -54,7 +57,7 @@ const LoginFrom = () => {
     <div id="container">
       <div>
         <h1>LOGIN PAGE</h1>
-        <form onSubmit={handleLogin} >
+        <form onSubmit={handleLogin}>
           <div id="username">
             <label>Username :</label>
             <input
@@ -85,12 +88,17 @@ const LoginFrom = () => {
               }
             />
           </div>
+          {loading ? (
+            <div class="spinner-border" id="load" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          ) : null}
           <button type="submit">Login</button>
           <div>
-            Create new Account ? please <Link to="/" >Register</Link>
+            Create new Account ? please <Link to="/">Register</Link>
           </div>
         </form>
-          </div>
+      </div>
     </div>
   );
 };
