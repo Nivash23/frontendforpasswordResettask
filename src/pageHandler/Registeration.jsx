@@ -58,11 +58,12 @@ const RegisterForm = () => {
   return (
     <div id="container">
       <div>
-        <h1>REGISTRATION PAGE</h1>
+        <h2>REGISTRATION PAGE</h2>
         <form onSubmit={handleRegister}>
           <div id="username">
-            <label>Username :</label>
+            <label for='name'>Username :</label>
             <input
+              id='name'
               type="email"
               placeholder="Email..."
               value={registerFormdata.username}
@@ -76,8 +77,9 @@ const RegisterForm = () => {
             />
           </div>
           <div id="password">
-            <label>Password :</label>
-            <input
+            <label for='pass'>Password :</label>
+          <input
+              id='pass'
               type="password"
               placeholder="password..."
               value={registerFormdata.password}
@@ -92,12 +94,12 @@ const RegisterForm = () => {
           </div>
           {
             loading?
-          (<div class="spinner-border" id='load' role="status">
-            <span class="visually-hidden">Loading...</span>
+          (<div className="spinner-border" id='load' role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>):null
           }
           <button type="submit">Register</button>
-          <div>
+          <div id='pageswitch'>
             Already have an account ? <Link to="/Login" >Login</Link>
           </div>
         </form>

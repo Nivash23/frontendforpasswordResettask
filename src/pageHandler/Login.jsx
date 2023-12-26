@@ -50,13 +50,14 @@ const LoginFrom = () => {
       // setIsRegistered(true);
     } else {
       console.log("invalid username or password");
+      setLoading(false);
       console.log(data);
     }
   };
   return (
     <div id="container">
       <div>
-        <h1>LOGIN PAGE</h1>
+        <h2>LOGIN PAGE</h2>
         <form onSubmit={handleLogin}>
           <div id="username">
             <label>Username :</label>
@@ -89,12 +90,12 @@ const LoginFrom = () => {
             />
           </div>
           {loading ? (
-            <div class="spinner-border" id="load" role="status">
-              <span class="visually-hidden">Loading...</span>
+            <div className="spinner-border" id="load" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           ) : null}
           <button type="submit">Login</button>
-          <div>
+          <div id='pageswitch'>
             Create new Account ? please <Link to="/">Register</Link>
           </div>
         </form>
