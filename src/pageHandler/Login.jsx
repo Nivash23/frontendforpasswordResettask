@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/App.css";
-import { BrowserRouter, Link, Navigate } from "react-router-dom";
+// import { BrowserRouter, Link, Navigate } from "react-router-dom";
 import "../App";
 import RegisterForm from "./Registeration";
 
@@ -45,10 +45,11 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
         username: "",
         password: "",
       });
-      setToken(data.token)
-      setUser(data)
+      setToken(data.token);
+      setUser(data); 
       alert("User login sucessfully..");
-      localStorage.setItem('user',data);
+      localStorage.setItem('user',JSON.stringify(data));
+      localStorage.setItem('token',data.token);
       setLoading(false);      
       // setIsRegistered(true);
     } else {

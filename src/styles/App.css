@@ -10,6 +10,9 @@ button{
 h2{
     margin-left:30px ;
 }
+#save{
+    margin-right: 100px;
+}
 #load{
     margin-left: 40%;
     color: blue;
@@ -46,8 +49,34 @@ h2{
 h1{
     display: flex;
     justify-content: center;
-    background-color:darkgreen;
+    background-color:rgb(203, 214, 203);
 }
+#logbut{
+    border-radius: 30px;
+}
+h5{
+    margin-top: 70px;
+}
+#dashcontainer{
+    text-align: center;
+    background-color:rgb(207, 206, 206) ;
+    height: 300px;
+    width:400px;
+    margin: 200px 300px 300px 400px ;
+    border-radius: 20px;
+}
+#amt{
+    margin: 5% 20% 5% 5%;
+}
+#amount{
+    width:200px;
+    margin-left: 20px;
+}
+#dec{
+    margin:0% 20% 5% 5%;
+}
+
+
 input{
     width:200px;
     border: 0px 0px 0px 0px;
