@@ -6,8 +6,10 @@ import "../styles/App.css";
 import LoginFrom from "./Login";
 
 const RegisterForm = () => {
+  const [regbut, setRegbut] = useState(true);
   const [registerFormdata, setRegisterFormdata] = useState({
     username: "",
+    name:"",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -19,6 +21,7 @@ const RegisterForm = () => {
 
     const registerbody = {
       username: registerFormdata.username,
+      name:registerFormdata.name,
       password: registerFormdata.password,
     };
     // const [loginFormData, setLoginFormData] = useState({
@@ -44,6 +47,7 @@ const RegisterForm = () => {
 
       setRegisterFormdata({
         username: "",
+        name:"",
         password: "",
       });
       setLoading(false);
@@ -55,15 +59,16 @@ const RegisterForm = () => {
       console.log(data);
     }
   };
+  
   return (
     <div id="container">
       <div>
         <h2>REGISTRATION PAGE</h2>
         <form onSubmit={handleRegister}>
           <div id="username">
-            <label for='name'>Username :</label>
+            <label htmlFor='email'>Username :</label>
             <input
-              id='name'
+              id='email'
               type="email"
               placeholder="Email..."
               value={registerFormdata.username}
@@ -76,8 +81,24 @@ const RegisterForm = () => {
               }
             />
           </div>
+          <div id="name">
+            <label htmlFor='name'>Name :</label>
+            <input
+              id='name'
+              type="text"
+              placeholder="Enter your name..."
+              value={registerFormdata.name}
+              required
+              onChange={(e) =>
+                setRegisterFormdata({
+                  ...registerFormdata,
+                  name: e.target.value,
+                })
+              }
+            />
+          </div>
           <div id="password">
-            <label for='pass'>Password :</label>
+            <label htmlFor='pass'>Password :</label>
           <input
               id='pass'
               type="password"
@@ -98,7 +119,7 @@ const RegisterForm = () => {
             <span className="visually-hidden">Loading...</span>
           </div>):null
           }
-          <button type="submit">Register</button>
+          <button type="submit"   >Register</button>
           <div id='pageswitch'>
             Already have an account ? <Link to="/Login" >Login</Link>
           </div>

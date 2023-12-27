@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/App.css";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter, Link, Navigate } from "react-router-dom";
 import "../App";
 import RegisterForm from "./Registeration";
 
@@ -39,23 +39,23 @@ const LoginFrom = () => {
     const data = await response.json();
 
     if (response.status == 200) {
-      console.log("user Login sucessfully..");
+      console.log("User Login sucessfully..");
       console.log(data);
       setLoginFormData({
         username: "",
         password: "",
       });
-      alert("username login sucessfully..");
-      setLoading(false);
+      alert("User login sucessfully..");
+      setLoading(false);      
       // setIsRegistered(true);
     } else {
-      console.log("invalid username or password");
+      console.log("Invalid username or password");
       setLoading(false);
       console.log(data);
     }
   };
   return (
-    <div id="container">
+    <div id="logincontainer">
       <div>
         <h2>LOGIN PAGE</h2>
         <form onSubmit={handleLogin}>
