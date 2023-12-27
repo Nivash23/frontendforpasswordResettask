@@ -4,7 +4,7 @@ import { BrowserRouter, Link, Navigate } from "react-router-dom";
 import "../App";
 import RegisterForm from "./Registeration";
 
-const LoginFrom = ({isRegistered,setIsRegistered,user,setUser,token,setToken}) => {
+const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) => {
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
@@ -48,6 +48,7 @@ const LoginFrom = ({isRegistered,setIsRegistered,user,setUser,token,setToken}) =
       setToken(data.token)
       setUser(data)
       alert("User login sucessfully..");
+      localStorage.setItem('user',data);
       setLoading(false);      
       // setIsRegistered(true);
     } else {

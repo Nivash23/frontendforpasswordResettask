@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterForm from './pageHandler/Registeration';
 import Dashboard from "./pageHandler/Dashboard";
 import LoginFrom from "./pageHandler/Login";
@@ -12,6 +12,13 @@ function userReg() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
+
   return (
     <div>
       <h1>PettyCash Manager</h1>
@@ -20,7 +27,7 @@ function userReg() {
           (<LoginFrom
           isRegistered={isRegistered}
           setIsRegistered={setIsRegistered}
-          user={user}
+          User={user}
           setUser={setUser}
           token={token}
           setToken={setToken}

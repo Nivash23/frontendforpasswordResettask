@@ -5,7 +5,7 @@ function Dashboard({User})
 {
     return (
         <div>
-            <p>Welcome,{User.payload.username }</p>
+            <h2>Welcome,{User.username}</h2>
         </div>
     )
 }
