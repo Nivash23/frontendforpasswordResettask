@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { BrowserRouter, Link } from 'react-router-dom';
-import "../App";
+import App from '../App';
 import "../styles/App.css";
 // import { MessageContext } from "../App";
 import LoginFrom from "./Login";
 
-const RegisterForm = () => {
+const RegisterForm = ({isRegistered,setIsRegistered}) => {
   const [regbut, setRegbut] = useState(true);
   const [registerFormdata, setRegisterFormdata] = useState({
     username: "",
@@ -51,7 +51,9 @@ const RegisterForm = () => {
         password: "",
       });
       setLoading(false);
+      setIsRegistered(true);
       alert("user Registered sucessfully");
+      
 
       // isRegistered ? <LoginFrom /> : <RegisterForm />;
     } else {
@@ -121,7 +123,7 @@ const RegisterForm = () => {
           }
           <button type="submit"   >Register</button>
           <div id='pageswitch'>
-            Already have an account ? <Link to="/Login" >Login</Link>
+            Already have an account ? <a onClick={() => {setIsRegistered(true)}}>Login</a>
           </div>
         </form>
       </div>

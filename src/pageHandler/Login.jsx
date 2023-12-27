@@ -4,7 +4,7 @@ import { BrowserRouter, Link, Navigate } from "react-router-dom";
 import "../App";
 import RegisterForm from "./Registeration";
 
-const LoginFrom = () => {
+const LoginFrom = ({isRegistered,setIsRegistered,user,setUser,token,setToken}) => {
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
@@ -45,6 +45,8 @@ const LoginFrom = () => {
         username: "",
         password: "",
       });
+      setToken(data.token)
+      setUser(data)
       alert("User login sucessfully..");
       setLoading(false);      
       // setIsRegistered(true);
@@ -96,7 +98,7 @@ const LoginFrom = () => {
           ) : null}
           <button type="submit">Login</button>
           <div id='pageswitch'>
-            Create new Account ? please <Link to="/">Register</Link>
+            Create new Account ? please <a onClick={()=>{setIsRegistered(false)}}>Register</a>
           </div>
         </form>
       </div>
