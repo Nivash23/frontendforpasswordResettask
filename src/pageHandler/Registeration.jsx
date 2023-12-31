@@ -121,7 +121,7 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
             <span className="visually-hidden">Loading...</span>
           </div>):null
           }
-          <button type="submit"   >Register</button>
+          <button id='regbut' type="submit"   >Register</button>
           <div id='pageswitch'>
             Already have an account ? <a onClick={() => {setIsRegistered(true)}}>Login</a>
           </div>

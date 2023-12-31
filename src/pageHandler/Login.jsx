@@ -98,7 +98,7 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
               <span className="visually-hidden">Loading...</span>
             </div>
           ) : null}
-          <button type="submit">Login</button>
+          <button id='loginbut' type="submit">Login</button>
           <div id='pageswitch'>
             Create new Account ? please <a onClick={()=>{setIsRegistered(false)}}>Register</a>
           </div>
