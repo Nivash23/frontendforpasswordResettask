@@ -10,6 +10,7 @@ function Dashboard({ User, setUser, setIsRegistered}) {
     Description: "",
   });
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const [entries, setEntries] = useState([]);
   const [entrylist, setEntrylist] = useState(false);
   // const entrylisthandle = () => {
@@ -43,7 +44,7 @@ function Dashboard({ User, setUser, setIsRegistered}) {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:3004/api/entry/",
+        "https://backendforcapstone-cokw.onrender.com/api/entry/",
         entrybody,
         config
       );
@@ -60,7 +61,7 @@ function Dashboard({ User, setUser, setIsRegistered}) {
   };
   const EntriesHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading1(true);
 
     const config = {
       headers: {
@@ -68,13 +69,13 @@ function Dashboard({ User, setUser, setIsRegistered}) {
       },
     };
     try {
-      const response = await axios.get('http://127.0.0.1:3004/api/entry/', config);
+      const response = await axios.get('https://backendforcapstone-cokw.onrender.com/api/entry/', config);
       console.log('All Entries..');
       console.log(response.data);
       setEntries(response.data);
       if (response.status == 200)
       {
-        setLoading(false);
+        setLoading1(false);
         }
       // setLoading(false);
       
@@ -145,6 +146,11 @@ function Dashboard({ User, setUser, setIsRegistered}) {
           </div>
 
         </form>
+        {loading1 ? (
+            <div className="spinner-border" id="load2" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : null}
          <button id='historybut' onClick={EntriesHandler} >View History</button>
       </div>
       <div id='listcontain'>
