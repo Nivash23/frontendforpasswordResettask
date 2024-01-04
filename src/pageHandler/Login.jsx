@@ -25,6 +25,7 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
     //   username: "",
     //   password: "",
     // });
+    
 
     const response = await fetch(
       "https://backendforcapstone-cokw.onrender.com/api/Login/",
@@ -39,6 +40,16 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
     const data = await response.json();
 
     if (response.status == 200) {
+      const contain = document.getElementById('sucess');
+      contain.innerHTML = [
+`<div class="alert alert-success" id='s' role="alert">
+        User LoggedIn Sucessfully..
+      </div>`
+
+      ]
+      
+
+
       console.log("User Login sucessfully..");
       console.log(data);
       setLoginFormData({
@@ -46,8 +57,10 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
         password: "",
       });
       setToken(data.token);
-      setUser(data); 
-      alert("User login sucessfully..");
+      setTimeout(() => {
+        
+        setUser(data); 
+      },2000)
       localStorage.setItem('user',JSON.stringify(data));
       localStorage.setItem('token',data.token);
       setLoading(false);      
@@ -59,10 +72,13 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
     }
   };
   return (
+    <div>
+      <div id='sucess'></div>
+         
     <div id="logincontainer">
       <div>
         <h2>LOGIN PAGE</h2>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} autoComplete="on">
           <div id="username">
             <label>Username :</label>
             <input
@@ -76,7 +92,8 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
                   username: e.target.value,
                 })
               }
-            />
+              />
+               <div id='ntxt'></div>
           </div>
           <div id="password">
             <label>Password :</label>
@@ -91,7 +108,8 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
                   password: e.target.value,
                 })
               }
-            />
+              />
+              <div id='ptxt'></div>
           </div>
           {loading ? (
             <div className="spinner-border" id="load" role="status">
@@ -104,6 +122,7 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 #historybut{
     margin:10px 50px 0px 50px; 
-
 }
 button{
     background-color: rgb(95, 220, 95);
@@ -9,7 +8,6 @@ button{
     font-weight: bold;
     margin-bottom: 20px;
     border-radius: 20px;
-    
 }
 
 #load2{
@@ -40,12 +38,22 @@ h2{
     border-radius: 20px;
 
 }
+#sucess{
+    margin: 5% 20% 0% 30%;
+    width:400px;
+    
+}
+#s{
+    background-color: rgb(77, 195, 77);
+    border-radius: 20px;
+
+}
 p{
     font-weight: bold;
 }
 #logincontainer{
     background-color: rgb(207, 206, 206);
-    margin: 5% 20% 20% 30%;
+    margin: 3% 20% 20% 30%;
     padding:0px 0px 0px 0px;
     width:400px;
     height: 320px;

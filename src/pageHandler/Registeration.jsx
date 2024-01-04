@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
-import { BrowserRouter, Link } from 'react-router-dom';
-import App from '../App';
+import { BrowserRouter, Link } from "react-router-dom";
+import App from "../App";
 import "../styles/App.css";
 // import { MessageContext } from "../App";
 import LoginFrom from "./Login";
 
-const RegisterForm = ({isRegistered,setIsRegistered}) => {
+const RegisterForm = ({ isRegistered, setIsRegistered }) => {
   const [regbut, setRegbut] = useState(true);
   const [registerFormdata, setRegisterFormdata] = useState({
     username: "",
-    name:"",
+    name: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
 
     const registerbody = {
       username: registerFormdata.username,
-      name:registerFormdata.name,
+      name: registerFormdata.name,
       password: registerFormdata.password,
     };
     // const [loginFormData, setLoginFormData] = useState({
@@ -42,17 +42,35 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
     const data = await response.json();
 
     if (response.status == 200) {
+      const contain = document.getElementById('sucess');
+      contain.innerHTML = [
+`<div class="alert alert-success" id='s' role="alert">
+        User Registered Sucessfully..
+      </div>`
+
+      ]
+     
+      
       console.log("user created sucessfully..");
       console.log(data);
-
+      
       setRegisterFormdata({
         username: "",
-        name:"",
+        name: "",
         password: "",
       });
       setLoading(false);
-      setIsRegistered(true);
-      alert("user Registered sucessfully");
+      
+
+      setTimeout(() => {
+        
+        setIsRegistered(true);
+      },2000)
+        
+      
+      
+
+        
       
 
       // isRegistered ? <LoginFrom /> : <RegisterForm />;
@@ -61,16 +79,22 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
       console.log(data);
     }
   };
-  
+
   return (
+    <div>
+      <div id='sucess'></div>
+
     <div id="container">
+        
       <div>
+        
+        
         <h2>REGISTRATION PAGE</h2>
         <form onSubmit={handleRegister}>
           <div id="username">
-            <label htmlFor='email'>Username :</label>
+            <label htmlFor="email">Username :</label>
             <input
-              id='email'
+              id="email"
               type="email"
               placeholder="Email..."
               value={registerFormdata.username}
@@ -84,9 +108,9 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
             />
           </div>
           <div id="name">
-            <label htmlFor='name'>Name :</label>
+            <label htmlFor="name">Name :</label>
             <input
-              id='name'
+              id="name"
               type="text"
               placeholder="Enter your name..."
               value={registerFormdata.name}
@@ -100,9 +124,9 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
             />
           </div>
           <div id="password">
-            <label htmlFor='pass'>Password :</label>
-          <input
-              id='pass'
+            <label htmlFor="pass">Password :</label>
+            <input
+              id="pass"
               type="password"
               placeholder="password..."
               value={registerFormdata.password}
@@ -115,19 +139,30 @@ const RegisterForm = ({isRegistered,setIsRegistered}) => {
               }
             />
           </div>
-          {
-            loading?
-          (<div className="spinner-border" id='load' role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>):null
-          }
-          <button id='regbut' type="submit"   >Register</button>
-          <div id='pageswitch'>
-            Already have an account ? <a onClick={() => {setIsRegistered(true)}}>Login</a>
+          {loading ? (
+            <div className="spinner-border" id="load" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : null}
+          <button id="regbut" type="submit">
+            Register
+          </button>
+          <div id="pageswitch">
+            Already have an account ?{" "}
+            <a
+              onClick={() => {
+                setIsRegistered(true);
+              }}
+            >
+              Login
+            </a>
           </div>
         </form>
       </div>
     </div>
+    </div>
+    
+
   );
 };
 export default RegisterForm;

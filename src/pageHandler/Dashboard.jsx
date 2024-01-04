@@ -159,7 +159,7 @@ function Dashboard({ User, setUser, setIsRegistered}) {
 
           {
             entries.map(entry => 
-              <li key={entry._id}>${entry.Amount}, {entry.Description }</li>
+              <li key={entry._id}>Rs.{entry.Amount}, {entry.Description }</li>
             )
               
           }
