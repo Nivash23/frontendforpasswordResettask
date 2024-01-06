@@ -6,6 +6,13 @@ import "../styles/App.css";
 import LoginFrom from "./Login";
 
 const RegisterForm = ({ isRegistered, setIsRegistered }) => {
+  let initialstateerrors = {
+    username: { required: false },
+    name: { required: false },
+    password: { required: false },
+  };
+  const [errors, setErrors] = useState(initialstateerrors);
+
   const [regbut, setRegbut] = useState(true);
   const [registerFormdata, setRegisterFormdata] = useState({
     username: "",
@@ -13,156 +20,174 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
     password: "",
   });
   const [loading, setLoading] = useState(false);
-  // const { setIsRegistered, isRegistered } = useContext(MessageContext);
-
+  // const { setIsRegistered, isRegistered } = useContext(MessageC
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
+    let hashError = false;
+    let errors = initialstateerrors;
     const registerbody = {
       username: registerFormdata.username,
       name: registerFormdata.name,
       password: registerFormdata.password,
     };
-    // const [loginFormData, setLoginFormData] = useState({
-    //   username: "",
-    //   password: "",
-    // });
-
-    const response = await fetch(
-      "https://backendforcapstone-cokw.onrender.com/api/users/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerbody),
+    if (registerbody.username == "") {
+      errors.username.required = true;
+      hashError = true;
+    }
+    if (registerbody.name == "") {
+      errors.name.required = true;
+      hashError = true;
+    }
+    if (registerbody.password == "") {
+      errors.password.required = true;
+      hashError = true;
+    }
+    setErrors(errors);
+    if(!hashError)
+    {
+      // return console.log('please fill the required field');
+      // const [loginFormData, setLoginFormData] = useState({
+        //   username: "",
+        //   password: "",
+        // });
+        
+      setLoading(true);
+      const response = await fetch(
+        "http://127.0.0.1:3004/api/users/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registerbody),
+        }
+      );
+      const data = await response.json();
+      
+          if (response.status == 200) {
+            const contain = document.getElementById("sucess");
+            contain.innerHTML = [
+              `<div class="alert alert-success" id='s' role="alert">
+              User Registered Sucessfully..
+            </div>`,
+            ];
+      
+            console.log("user created sucessfully..");
+            console.log(data);
+      
+            setRegisterFormdata({
+              username: "",
+              name: "",
+              password: "",
+            });
+            setLoading(false);
+      
+            setTimeout(() => {
+              setIsRegistered(true);
+            }, 2000);
+      
+            // isRegistered ? <LoginFrom /> : <RegisterForm />;
+          } else {
+            console.log("Error");
+            console.log(data);
       }
-    );
-    const data = await response.json();
-
-    if (response.status == 200) {
-      const contain = document.getElementById('sucess');
-      contain.innerHTML = [
-`<div class="alert alert-success" id='s' role="alert">
-        User Registered Sucessfully..
-      </div>`
-
-      ]
-     
-      
-      console.log("user created sucessfully..");
-      console.log(data);
-      
-      setRegisterFormdata({
-        username: "",
-        name: "",
-        password: "",
-      });
-      setLoading(false);
-      
-
-      setTimeout(() => {
-        
-        setIsRegistered(true);
-      },2000)
-        
-      
-      
-
-        
-      
-
-      // isRegistered ? <LoginFrom /> : <RegisterForm />;
-    } else {
-      console.log("Error");
-      console.log(data);
+    }
+    else {
+      const commonerr = document.getElementById('commonerror');
+      commonerr.innerText = 'please fill the required field';
+       console.log('please fill the required field');
+    
+  
     }
   };
-
+  
+  
+  
   return (
     <div>
-      <div id='sucess'></div>
+      <div id="sucess"></div>
 
-    <div id="container">
-        
-      <div>
-        
-        
-        <h2>REGISTRATION PAGE</h2>
-        <form onSubmit={handleRegister}>
-          <div id="username">
-            <label htmlFor="email">Username :</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Email..."
-              value={registerFormdata.username}
-              required
-              onChange={(e) =>
-                setRegisterFormdata({
-                  ...registerFormdata,
-                  username: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div id="name">
-            <label htmlFor="name">Name :</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your name..."
-              value={registerFormdata.name}
-              required
-              onChange={(e) =>
-                setRegisterFormdata({
-                  ...registerFormdata,
-                  name: e.target.value,
-                })
-              }
-            />
-          </div>
-          <div id="password">
-            <label htmlFor="pass">Password :</label>
-            <input
-              id="pass"
-              type="password"
-              placeholder="password..."
-              value={registerFormdata.password}
-              required
-              onChange={(e) =>
-                setRegisterFormdata({
-                  ...registerFormdata,
-                  password: e.target.value,
-                })
-              }
-            />
-          </div>
-          {loading ? (
-            <div className="spinner-border" id="load" role="status">
-              <span className="visually-hidden">Loading...</span>
+      <div id="container">
+        <div>
+          <h2>REGISTRATION PAGE</h2>
+          <form onSubmit={handleRegister}>
+            <div id="username">
+              <label htmlFor="email">Username :</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Email..."
+                value={registerFormdata.username}
+                onChange={(e) =>
+                  setRegisterFormdata({
+                    ...registerFormdata,
+                    username: e.target.value,
+                  })
+                }
+              />
             </div>
-          ) : null}
-          <button id="regbut" type="submit">
-            Register
-          </button>
-          <div id="pageswitch">
-            Already have an account ?{" "}
-            <a
-              onClick={() => {
-                setIsRegistered(true);
-              }}
-            >
-              Login
-            </a>
-          </div>
-        </form>
+            {errors.username.required ? (
+              <span className="text-danger">Email is required </span>
+              ) : null}
+            <div id="name">
+              <label htmlFor="name">Name :</label>
+              <input
+                id="name"
+                type="text"
+                placeholder="Enter your name..."
+                value={registerFormdata.name}
+                onChange={(e) =>
+                  setRegisterFormdata({
+                    ...registerFormdata,
+                    name: e.target.value,
+                  })
+                }
+                />
+            </div>
+            {errors.name.required ? (
+              <span className="text-danger">Name is required </span>
+              ) : null}
+            <div id="password">
+              <label htmlFor="pass">Password :</label>
+              <input
+                id="pass"
+                type="password"
+                placeholder="password..."
+                value={registerFormdata.password}
+                onChange={(e) =>
+                  setRegisterFormdata({
+                    ...registerFormdata,
+                    password: e.target.value,
+                  })
+                }
+                />
+            </div>
+            {errors.password.required ? (
+              <span className="text-danger">Password is required </span>
+              ) : null}
+            {loading ? (
+              <div className="spinner-border" id="load" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : null}
+            <button id="regbut" type="submit">
+              Register
+            </button>
+            <div className="text-danger" id='commonerror'></div>
+            <div id="pageswitch">
+              Already have an account ?{" "}
+              <a
+                onClick={() => {
+                  setIsRegistered(true);
+                }}
+                >
+                Login
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    </div>
-    
-
-  );
-};
+);
+}
 export default RegisterForm;

@@ -4,7 +4,15 @@ import "../styles/App.css";
 import "../App";
 import RegisterForm from "./Registeration";
 
-const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) => {
+const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setToken }) => {
+  const initialstateerrors = {
+     username: { required: false },
+     password:{required:false},
+    
+  }
+
+  const [errors, setErrors] = useState(initialstateerrors)
+
   const [loginFormData, setLoginFormData] = useState({
     username: "",
     password: "",
@@ -14,61 +22,82 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
+    let errors = initialstateerrors;
+    let hasError = false;
+    
     // const { setIsRegistered} = useContext(MessageContext);
     const Loginbody = {
       username: loginFormData.username,
       password: loginFormData.password,
     };
+    if (loginFormData.username == "") {
+      errors.username.required = true;
+      hasError = true;
+    }
+    if (loginFormData.password == "") {
+      // errors.password.required = true;
+      errors.password.required = true;
+      hasError = true;
+    }
     // const [loginFormData, setLoginFormData] = useState({
-    //   username: "",
-    //   password: "",
-    // });
-    
-
-    const response = await fetch(
-      "https://backendforcapstone-cokw.onrender.com/api/Login/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(Loginbody),
-      }
-    );
-    const data = await response.json();
-
-    if (response.status == 200) {
-      const contain = document.getElementById('sucess');
-      contain.innerHTML = [
-`<div class="alert alert-success" id='s' role="alert">
-        User LoggedIn Sucessfully..
-      </div>`
-
-      ]
+      //   username: "",11111111111111111
+      //   password: "",
+      // });
       
-
-
-      console.log("User Login sucessfully..");
-      console.log(data);
-      setLoginFormData({
-        username: "",
-        password: "",
-      });
-      setToken(data.token);
-      setTimeout(() => {
+      if (!hasError)
+      {
         
-        setUser(data); 
-      },2000)
-      localStorage.setItem('user',JSON.stringify(data));
-      localStorage.setItem('token',data.token);
-      setLoading(false);      
-      // setIsRegistered(true);
-    } else {
-      console.log("Invalid username or password");
-      setLoading(false);
-      console.log(data);
+      setLoading(true);
+      const response = await fetch(
+        "https://backendforcapstone-cokw.onrender.com/api/Login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Loginbody),
+        }
+      );
+      const data = await response.json();
+  
+      if (response.status == 200) {
+        const contain = document.getElementById('sucess');
+        contain.innerHTML = [
+  `<div class="alert alert-success" id='s' role="alert">
+          User LoggedIn Sucessfully..
+        </div>`
+  
+        ]
+        
+  
+  
+        console.log("User Login sucessfully..");
+        console.log(data);
+        setLoginFormData({
+          username: "",
+          password: "",
+        });
+        setToken(data.token);
+        setTimeout(() => {
+          
+          setUser(data); 
+        },2000)
+        localStorage.setItem('user',JSON.stringify(data));
+        localStorage.setItem('token',data.token);
+        setLoading(false);      
+        // setIsRegistered(true);
+      } else {
+        console.log("Invalid username or password");
+        setLoading(false);
+        const commonerr1 = document.getElementById('commonerror');
+        commonerr1.innerText = 'Invalid username or password';
+
+        console.log(data);
+      }
+    }
+      else {
+         const commonerr1 = document.getElementById('commonerror');
+           commonerr1.innerText = 'Please Enter the required Field';
     }
   };
   return (
@@ -81,11 +110,11 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
         <form onSubmit={handleLogin} autoComplete="on">
           <div id="username">
             <label>Username :</label>
-            <input
+              <input
+                name="username"
               type="email"
               placeholder="Email..."
               value={loginFormData.username}
-              required
               onChange={(e) =>
                 setLoginFormData({
                   ...loginFormData,
@@ -93,15 +122,17 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
                 })
               }
               />
-               <div id='ntxt'></div>
-          </div>
+            </div>
+            {errors.username.required?
+               (<span className="text-danger">Email is required </span>):null
+            }
           <div id="password">
             <label>Password :</label>
-            <input
+              <input
+                name="password"
               type="password"
               placeholder="password..."
               value={loginFormData.password}
-              required
               onChange={(e) =>
                 setLoginFormData({
                   ...loginFormData,
@@ -109,14 +140,18 @@ const LoginFrom = ({isRegistered,setIsRegistered,User,setUser,token,setToken}) =
                 })
               }
               />
-              <div id='ptxt'></div>
-          </div>
+            </div>
+            {errors.password.required?
+
+              (<span className="text-danger">Password is required </span>):null
+            }
           {loading ? (
             <div className="spinner-border" id="load" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
-          ) : null}
+            ) : null}
           <button id='loginbut' type="submit">Login</button>
+          <div className="text-danger" id='commonerror'></div>
           <div id='pageswitch'>
             Create new Account ? please <a onClick={()=>{setIsRegistered(false)}}>Register</a>
           </div>
