@@ -49,8 +49,10 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
       // const [loginFormData, setLoginFormData] = useState({
         //   username: "",
         //   password: "",
-        // });
-        
+      // });
+      
+      const commonerr = document.getElementById('commonerror');
+      commonerr.innerText = '';
       setLoading(true);
       const response = await fetch(
         "https://backendforcapstone-cokw.onrender.com/api/users/",
