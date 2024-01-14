@@ -55,7 +55,7 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
       commonerr.innerText = '';
       setLoading(true);
       const response = await fetch(
-        "https://backendforcapstone-cokw.onrender.com/api/users/",
+        "http://127.0.0.1:3004/api/users/",
         {
           method: "POST",
           headers: {

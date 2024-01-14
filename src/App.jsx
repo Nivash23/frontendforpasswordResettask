@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RegisterForm from './pageHandler/Registeration';
 import Dashboard from "./pageHandler/Dashboard";
 import LoginFrom from "./pageHandler/Login";
+import ResetpasswordForm from "./pageHandler/ResetpasswordForm";
 // import { Route, BrowserRouter, Routes } from "react-router-dom";
 import './styles/App.css'
 
@@ -11,6 +12,7 @@ function userReg() {
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [iswrongpassword, setIswrongpassword] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -23,14 +25,15 @@ function userReg() {
     <div>
       <h1>PettyCash Manager</h1>
       {
-        user ? (<Dashboard token={token} setIsRegistered={setIsRegistered} User={user} setUser={setUser} />) : isRegistered ?
+        iswrongpassword ? (<ResetpasswordForm />): user ? (<Dashboard token={token} setIsRegistered={setIsRegistered} User={user} setUser={setUser} />) : isRegistered ?
           (<LoginFrom
           isRegistered={isRegistered}
           setIsRegistered={setIsRegistered}
           User={user}
           setUser={setUser}
           token={token}
-          setToken={setToken}
+            setToken={setToken}
+            iswrongpassword={ iswrongpassword} setIswrongpassword={setIswrongpassword}
           />) :
           (<RegisterForm
             isRegistered={isRegistered}

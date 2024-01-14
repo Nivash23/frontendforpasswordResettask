@@ -4,7 +4,7 @@ import "../styles/App.css";
 import "../App";
 import RegisterForm from "./Registeration";
 
-const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setToken }) => {
+const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setToken,iswrongpassword,setIswrongpassword }) => {
   const initialstateerrors = {
      username: { required: false },
      password:{required:false},
@@ -49,7 +49,7 @@ const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setTok
         
       setLoading(true);
       const response = await fetch(
-        "https://backendforcapstone-cokw.onrender.com/api/Login/",
+        "http://127.0.0.1:3004/api/Login/",
         {
           method: "POST",
           headers: {
@@ -150,7 +150,11 @@ const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setTok
               <span className="visually-hidden">Loading...</span>
             </div>
             ) : null}
+            <div>
           <button id='loginbut' type="submit">Login</button>
+              <button id='resetbut' onClick={() =>{setIswrongpassword(true)}}>Reset</button>
+
+            </div>
           <div className="text-danger" id='commonerror'></div>
           <div id='pageswitch'>
             Create new Account ? please <a onClick={()=>{setIsRegistered(false)}}>Register</a>
