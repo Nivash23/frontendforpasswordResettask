@@ -58,6 +58,11 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
       if (response.status == 200) {
         const msgtxt = document.getElementById("msg");
         msgtxt.innerText = "Password Reset sucessfully...";
+        setPassResetFormData({
+          email: "",
+          Newpassword: "",
+          confirmpassword:"",
+        })
         setLoading(false);
       }
     } else {
@@ -132,6 +137,9 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
           <button type="submit" id="resetpass">
             save
           </button>
+
+          <p id='saveandlogin' onClick={() => {
+              setIswrongpassword(false)}}>Login</p>
           <div className="text-danger" id="commonerror"></div>
       <p id="msg"></p>
         </form>
