@@ -46,7 +46,7 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
     if (!haserror) {
       setLoading(true);
       const response = await fetch(
-        "http://127.0.0.1:3004/api/Resetpass/",
+        "https://passwordresettask-dzlj.onrender.com/api/Resetpass/",
         {
           method: "POST",
           headers: {
