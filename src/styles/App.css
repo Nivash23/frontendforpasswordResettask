@@ -20,7 +20,7 @@ button {
 }
 #saveandlogin{
   margin-left: 150px;
-  margin-top: 30px;
+  margin-top: 10px;
   cursor: pointer;
 }
 #resetbut{
@@ -45,8 +45,11 @@ button {
   margin: 3% 20% 20% 30%;
   padding: 0px 0px 0px 0px;
   width: 400px;
-  height: 480px;
+  height: 500px;
   border-radius: 20px;
+}
+#rstmsg1,#rstmsg2,#rstmsg3{
+  margin-left: 160px;
 }
 
 #load2 {

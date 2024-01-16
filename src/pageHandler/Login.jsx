@@ -46,6 +46,8 @@ const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setTok
       
       if (!hasError)
       {
+        const commonerr2 = document.getElementById('commonerror');
+           commonerr2.innerText = '';
         
       setLoading(true);
       const response = await fetch(

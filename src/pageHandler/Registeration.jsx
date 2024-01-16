@@ -45,6 +45,8 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
     setErrors(errors);
     if(!hashError)
     {
+        const commonerr1 = document.getElementById('commonerror');
+      commonerr1.innerText = '';
       // return console.log('please fill the required field');
       // const [loginFormData, setLoginFormData] = useState({
         //   username: "",
@@ -97,7 +99,7 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
     else {
       const commonerr = document.getElementById('commonerror');
       commonerr.innerText = 'please fill the required field';
-       console.log('please fill the required field');
+       console.log('Please Enter the required Field');
     
   
     }

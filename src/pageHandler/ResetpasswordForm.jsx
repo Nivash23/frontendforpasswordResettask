@@ -38,12 +38,14 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
       haserror = true;
     }
     if (passResetFormData.confirmpassword !== passResetFormData.Newpassword) {
-      // errors.confirmpassword.required = true;
+      errors.confirmpassword.required = true;
       haserror = true;
     }
 
     setErrors(errors);
     if (!haserror) {
+      const Commonerror = document.getElementById('commonerror');
+      Commonerror.innerText = "";
       setLoading(true);
       const response = await fetch(
         "https://passwordresettask-dzlj.onrender.com/api/Resetpass/",
@@ -56,18 +58,23 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
         }
       );
       if (response.status == 200) {
-        const msgtxt = document.getElementById("msg");
+        let msgtxt = document.getElementById("msg");
         msgtxt.innerText = "Password Reset sucessfully...";
         setPassResetFormData({
           email: "",
           Newpassword: "",
           confirmpassword:"",
         })
+
         setLoading(false);
+        setTimeout(() => {
+           msgtxt.innerText = "";
+          
+        }, 4000);
       }
     } else {
-      const commonerr = document.getElementById("commonerror");
-      commonerr.innerText = "Please Fill the required filed";
+      let commonerr = document.getElementById("commonerror");
+      commonerr.innerText = "Please Enter the required Filed";
     }
   };
   return (
@@ -91,7 +98,7 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
             />
           </div>
           {errors.email.required ? (
-            <span className="text-danger">email is required </span>
+            <span id='rstmsg1'className="text-danger">email is required </span>
           ) : null}
           <div id="newpass">
             <label>New Password </label>
@@ -109,7 +116,7 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
             />
           </div>
           {errors.newpassword.required ? (
-            <span className="text-danger">Password is required </span>
+            <span id='rstmsg2' className="text-danger">Password is required </span>
           ) : null}
           <div id="confirmpass">
             <label>Confirm Password </label>
@@ -127,7 +134,7 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
             />
           </div>
           {errors.confirmpassword.required ? (
-            <span className="text-danger">ConfirmPassword is required </span>
+            <span id='rstmsg3' className="text-danger">ConfirmPassword is required </span>
           ) : null}
           {loading ? (
             <div className="spinner-border" id="load" role="status">
@@ -139,7 +146,7 @@ function ResetpasswordForm({ iswrongpassword, setIswrongpassword }) {
           </button>
 
           <p id='saveandlogin' onClick={() => {
-              setIswrongpassword(false)}}>Login</p>
+              setIswrongpassword(false)}}>Login ?</p>
           <div className="text-danger" id="commonerror"></div>
       <p id="msg"></p>
         </form>
