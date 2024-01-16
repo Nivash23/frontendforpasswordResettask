@@ -152,13 +152,13 @@ const LoginFrom = ({ isRegistered, setIsRegistered, User, setUser, token, setTok
             ) : null}
             <div>
           <button id='loginbut' type="submit">Login</button>
-              <button id='resetbut' onClick={() =>{setIswrongpassword(true)}}>Reset</button>
 
             </div>
           <div className="text-danger" id='commonerror'></div>
           <div id='pageswitch'>
-            Create new Account ? please <a onClick={()=>{setIsRegistered(false)}}>Register</a>
-          </div>
+              Create new Account ? please <a onClick={() => { setIsRegistered(false) }}>Register</a>
+            </div>
+            <p id='resetbut'   onClick={() =>{setIswrongpassword(true)}}>Forgot Password?</p>
         </form>
       </div>
     </div>

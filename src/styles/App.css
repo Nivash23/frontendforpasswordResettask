@@ -9,12 +9,38 @@ button {
   margin-bottom: 20px;
   border-radius: 20px;
 }
+#newpass{
+   margin: 20px 20px 5px 23px;
+  padding: 5px 5px 5px 5px;
+
+}
+#username1{
+  margin: 20px 20px 5px 90px;
+  padding: 5px 5px 5px 5px;
+}
+#resetbut{
+  margin-left: 100px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+#msg{
+  margin-left: 50px;
+}
+#resetpass{
+  margin-left: 110px;
+  margin-top: 20px;
+}
+#confirmpass
+{
+  margin: 20px 20px 5px 10px;
+  padding: 5px 5px 5px 5px;
+}
 #passResetContainer {
   background-color: rgb(207, 206, 206);
   margin: 3% 20% 20% 30%;
   padding: 0px 0px 0px 0px;
   width: 400px;
-  height: 380px;
+  height: 480px;
   border-radius: 20px;
 }
 

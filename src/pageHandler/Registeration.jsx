@@ -55,7 +55,7 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
       commonerr.innerText = '';
       setLoading(true);
       const response = await fetch(
-        "http://127.0.0.1:3004/api/users/",
+        "https://passwordresettask-dzlj.onrender.com/api/users/",
         {
           method: "POST",
           headers: {

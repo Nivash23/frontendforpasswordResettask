@@ -44,7 +44,7 @@ function Dashboard({ User, setUser, setIsRegistered}) {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:3004/api/entry/",
+        "https://passwordresettask-dzlj.onrender.com/api/entry/",
         entrybody,
         config
       );

@@ -25,7 +25,7 @@ function userReg() {
     <div>
       <h1>PettyCash Manager</h1>
       {
-        iswrongpassword ? (<ResetpasswordForm />): user ? (<Dashboard token={token} setIsRegistered={setIsRegistered} User={user} setUser={setUser} />) : isRegistered ?
+        iswrongpassword ? (<ResetpasswordForm iswrongpassword={ iswrongpassword} setIswrongpassword={setIswrongpassword}/>): user ? (<Dashboard token={token} setIsRegistered={setIsRegistered} User={user} setUser={setUser} />) : isRegistered ?
           (<LoginFrom
           isRegistered={isRegistered}
           setIsRegistered={setIsRegistered}
