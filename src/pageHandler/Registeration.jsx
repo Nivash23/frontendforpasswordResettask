@@ -5,6 +5,8 @@ import "../styles/App.css";
 // import { MessageContext } from "../App";
 import LoginFrom from "./Login";
 
+
+
 const RegisterForm = ({ isRegistered, setIsRegistered }) => {
   let initialstateerrors = {
     username: { required: false },
@@ -68,11 +70,12 @@ const RegisterForm = ({ isRegistered, setIsRegistered }) => {
       );
       const data = await response.json();
       
-          if (response.status == 200) {
+      if (response.status == 200) {
+
             const contain = document.getElementById("sucess");
             contain.innerHTML = [
               `<div class="alert alert-success" id='s' role="alert">
-              User Registered Sucessfully..
+              User Registered sucessfully
             </div>`,
             ];
       
