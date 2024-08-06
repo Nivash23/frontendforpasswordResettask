@@ -22,7 +22,7 @@ function userReg() {
   }, []);
 
   return (
-    <div>
+    <div id="body">
       <h1>Password Reset</h1>
       {
         iswrongpassword ? (<ResetpasswordForm iswrongpassword={ iswrongpassword} setIswrongpassword={setIswrongpassword}/>): user ? (<Dashboard token={token} setIsRegistered={setIsRegistered} User={user} setUser={setUser} />) : isRegistered ?

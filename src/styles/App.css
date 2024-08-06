@@ -1,3 +1,8 @@
+#body{
+  background-color: rgb(114, 114, 114);
+  height:100vh;
+}
+
 #historybut {
   margin: 10px 50px 0px 50px;
 }
@@ -7,7 +12,7 @@ button {
   padding: 5px 5px 5px 5px;
   font-weight: bold;
   margin-bottom: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 #newpass{
    margin: 20px 20px 5px 23px;
@@ -74,7 +79,7 @@ h2 {
   color: blue;
 }
 #container {
-  background-color: rgb(207, 206, 206);
+  background-color: rgb(162, 162, 162);
   margin: 5% 20% 20% 30%;
   padding: 0px 0px 0px 0px;
   width: 400px;
@@ -120,7 +125,7 @@ p {
 h1 {
   display: flex;
   justify-content: center;
-  background-color: rgb(203, 214, 203);
+  background-color: rgb(130, 145, 130);
 }
 #logbut {
   border-radius: 30px;
@@ -166,7 +171,7 @@ a {
   background-color: rgb(110, 200, 110);
   border-style: dotted;
   padding: 5px;
-  border-radius: 15px;
+  border-radius: 12px;
 }
 #pageswitch {
   margin-left: 30px;
